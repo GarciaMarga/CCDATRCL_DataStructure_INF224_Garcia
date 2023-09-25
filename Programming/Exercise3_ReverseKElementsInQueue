@@ -1,0 +1,64 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class ReverseKElementsInQueue {
+   public static void reverseKElements(Queue<Integer> queue, int k) {
+       if (k <= 0 || k > queue.size()) {
+           System.out.println("Invalid value of k.");
+           return;
+       }
+
+       Stack<Integer> stack = new Stack<>();
+
+       // Push the first k elements into the stack
+       for (int i = 0; i < k; i++) {
+           stack.push(queue.poll());
+       }
+
+       // Pop elements from the stack and enqueue them back into the queue
+       while (!stack.isEmpty()) {
+           queue.add(stack.pop());
+       }
+
+       // Move the remaining elements to the end of the queue
+       for (int i = 0; i < queue.size() - k; i++) {
+           queue.add(queue.poll());
+       }
+   }
+
+   public static void main(String[] args) {
+       Queue<Integer> queue = new LinkedList<>();
+       int k = 10; // Change this value as needed
+
+       // Add elements to the queue
+       queue.add(1);
+       queue.add(2);
+       queue.add(3);
+       queue.add(4);
+       queue.add(5);
+       queue.add(6);
+       queue.add(7);
+       queue.add(8);
+       queue.add(9);
+       queue.add(10);
+       queue.add(11);
+       queue.add(12);
+       queue.add(13);
+       queue.add(14);
+       queue.add(15);
+       queue.add(16);
+       queue.add(17);
+       queue.add(18);
+       queue.add(19);
+       queue.add(20);
+       
+      
+
+       System.out.println("Original Queue: " + queue);
+
+       reverseKElements(queue, k);
+
+       System.out.println("Marga Garcia's Queue after reversing first " + k + " elements: " + queue);
+   }
+}
